@@ -1,11 +1,8 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import LayoutBox from '../components/Layout.jsx'
 
 const About = () => (
-  <div>
-    <p>this is about page</p>
-    <Link to="/home">goto Home</Link>
-  </div>
+  <LayoutBox></LayoutBox>
 )
 
 export default About
