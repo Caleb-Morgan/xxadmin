@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import { Layout, Menu, Icon } from 'antd';
-import { Link } from 'react-router-dom'
-import '../styles/LayoutBox/LayoutBox.css'
+import { Link } from 'react-router-dom';
+import '../styles/LayoutBox/LayoutBox.scss';
+import Logo from '../logo.svg';
 const { Header, Sider, Content } = Layout;
 class LayoutBox extends Component{
     constructor(props) {
@@ -23,7 +24,7 @@ class LayoutBox extends Component{
           collapsible
           collapsed={this.state.collapsed}
         >
-          <div className="logo" />
+          <div className="logo"><img src={Logo} alt="logo"/><a href=""><Link to="/login">React Wheel</Link></a></div>
           <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
             <Menu.Item key="1">
                 <Link to="/about">
@@ -49,7 +50,7 @@ class LayoutBox extends Component{
               onClick={this.toggle}
             />
           </Header>
-          <Content style={{ margin: '24px 16px', padding: 24, background: '#fff', minHeight: 280 }}>
+          <Content>
             Content
           </Content>
         </Layout>

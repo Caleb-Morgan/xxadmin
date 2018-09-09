@@ -4,6 +4,7 @@ import { HashRouter, Switch } from 'react-router-dom'
 
 import Home from 'routes/home'
 import About from 'routes/about'
+import LoginPage from 'routes/login'
 
 const Routes = () => (
   <HashRouter>
@@ -12,6 +13,7 @@ const Routes = () => (
       <Switch>
         <Route path="/home" component={Home} />
         <Route path="/about" component={About} />
+        <Route path="/login" component={LoginPage} />
       </Switch>
     </div>
   </HashRouter>
