@@ -24,7 +24,7 @@ class LayoutBox extends Component{
           collapsible
           collapsed={this.state.collapsed}
         >
-          <div className="logo"><img src={Logo} alt="logo"/><a href=""><Link to="/login">React Wheel</Link></a></div>
+          <div className="logo"><img src={Logo} alt="logo"/><Link to="/login">React Wheel</Link></div>
           <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
             <Menu.Item key="1">
                 <Link to="/about">

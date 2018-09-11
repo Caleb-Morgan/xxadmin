@@ -22,30 +22,30 @@ class NormalLoginForm extends Component {
             <Form onSubmit={this.handleSubmit} className="login-form">
                 <FormItem>
                     {getFieldDecorator('userName', {
-                    rules: [{ required: true, message: 'Please input your username!' }],
+                    rules: [{ required: true, message: '账号不能为空!' }],
                     })(
-                    <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Username" />
+                    <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="账号" autoFocus />
                     )}
                 </FormItem>
                 <FormItem>
                     {getFieldDecorator('password', {
-                    rules: [{ required: true, message: 'Please input your Password!' }],
+                    rules: [{ required: true, message: '密码不能为空!' }],
                     })(
-                    <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} type="password" placeholder="Password" />
+                    <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} type="password" placeholder="密码" />
                     )}
                 </FormItem>
                 <FormItem>
                     {getFieldDecorator('remember', {
                     valuePropName: 'checked',
-                    initialValue: true,
+                    initialValue: false,
                     })(
-                    <Checkbox>Remember me</Checkbox>
+                    <Checkbox>记住密码</Checkbox>
                     )}
-                    <a className="login-form-forgot" href="">Forgot password</a>
+                    <a className="login-form-forgot">忘记密码？</a>
                     <Button type="primary" htmlType="submit" className="login-form-button">
-                    Log in
+                    登录
                     </Button>
-                    Or <a href=""><Link to="/home">register now!</Link></a>
+                    <Link to="/home">免费注册</Link>
                 </FormItem>
             </Form>
         </div>
