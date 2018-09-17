@@ -51,7 +51,7 @@ class LayoutBox extends Component{
             />
           </Header>
           <Content>
-            Content
+            {this.props.children}
           </Content>
         </Layout>
       </Layout>
