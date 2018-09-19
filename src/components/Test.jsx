@@ -10,19 +10,19 @@ export default class Test extends Component{
             scale: 'c'
         }
     }
-    handelCelsiusChange(temperature){
+    handelCelsiusChange = (temperature, e) => {
         this.setState({scale: 'c', temperature})
     }
-    handelFahrenheitChange(temperature){
+    handelFahrenheitChange = (temperature, e) => {
         this.setState({scale: 'f', temperature})
     }
-    toCelsius(fahrenheit){
+    toCelsius = (fahrenheit, e) => {
         return (fahrenheit-32) * 5 / 9;
     }
-    toFahrenheit(celsius){
+    toFahrenheit = (celsius, e) => {
         return (celsius / 9 * 5) + 32;
     }
-    tryConvert(temperature, convert){
+    tryConvert = (temperature, convert, e) => {
         const input = parseFloat(temperature);
         if(Number.isNaN(input)){
             return '';
@@ -38,8 +38,8 @@ export default class Test extends Component{
         const fahrenheit = scale === 'c' ? this.tryConvert(temperature,this.toFahrenheit) : temperature;
         return(
             <div>
-                <Temperatureinput scale="c" temperature={celsius} onTemperatureChange={ this.handelCelsiusChange.bind(this) }/>
-                <Temperatureinput scale="f" temperature={fahrenheit} onTemperatureChange={ this.handelFahrenheitChange.bind(this) }/>
+                <Temperatureinput scale="c" temperature={celsius} onTemperatureChange={ this.handelCelsiusChange}/>
+                <Temperatureinput scale="f" temperature={fahrenheit} onTemperatureChange={ this.handelFahrenheitChange}/>
                 <BoilingVerdict celsius={parseFloat(celsius)} />
             </div>
         )

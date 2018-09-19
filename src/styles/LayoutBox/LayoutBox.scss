@@ -1,3 +1,7 @@
+@import "../scroll.less";
+.ant-layout{
+  height: 100vh;
+}
 .ant-layout-content{
   margin: 24px 16px;
   padding: 24px; 
@@ -35,4 +39,8 @@
   max-width: 0;
   display: inline-block;
   opacity: 0;
+}
+.avatar img{
+  width: 40px;
+  height: 40px;
 }
