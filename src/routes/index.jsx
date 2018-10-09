@@ -2,6 +2,9 @@ import React from 'react'
 import { Route, Redirect } from 'react-router'
 import { HashRouter, Switch } from 'react-router-dom'
 
+import { Provider } from 'mobx-react'
+import stores from 'stores'
+
 import Home from 'routes/home'
 import About from 'routes/about'
 import LoginPage from 'routes/login'
@@ -20,7 +23,9 @@ const Routes = () => (
 )
 
 const App = () => (
-  <Routes />
+  <Provider {...stores}>
+    <Routes />
+  </Provider>
 )
 
 export default App
