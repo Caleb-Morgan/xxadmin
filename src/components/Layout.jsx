@@ -11,7 +11,152 @@ class LayoutBox extends Component {
     super(props);
     this.state = {
       "activeIndex": 0,
-      "collapsed": true
+      "collapsed": true,
+      "menulist":[
+        {
+          'text': '首页',
+          'type': 'home',
+          'to': '/home',
+          'key': 'home'
+        },
+        {
+          'text': '系统管理',
+          'type': 'project',
+          'to': '/system',
+          'key': 'system'
+        },
+        {
+          'text': '用户中心',
+          'type': 'user',
+          'to': '/user',
+          'key': 'user'
+        },
+        {
+          'text': '对象管理',
+          'type': 'database',
+          'key': 'objlist',
+          'list': [
+            {
+              'text': '对象管理',
+              'type': 'obj',
+              'to': '/obj',
+              'key': 'obj'
+            },
+            {
+              'text': '对象类别',
+              'type': 'obj',
+              'to': 'obj',
+              'key': 'objtype'
+            }
+          ]
+        },
+        {
+          'text': '规则管理',
+          'type': 'share-alt',
+          'to': '/rule',
+          'key': 'rulelist',
+          'list': [
+            {
+              'text': '规则管理',
+              'type': 'rule',
+              'to': '/rule',
+              'key': 'rule'
+            },
+            {
+              'text': '远程规则管理',
+              'type': 'rule',
+              'to': '/rule',
+              'key': 'remoterule'
+            },
+            {
+              'text': '规则类别',
+              'type': 'rule',
+              'to': '/rule',
+              'key': 'ruletype'
+            }
+          ]
+        },
+        {
+          'text': '模块管理',
+          'type': 'cluster',
+          'to': '/mod',
+          'key': 'modlist',
+          'list':[
+            {
+              'text': '模块管理',
+              'type': 'mod',
+              'to': '/mod',
+              'key': 'mod',
+            },
+            {
+              'text': '模块类别',
+              'type': 'mod',
+              'to': '/mod',
+              'key': 'modtype',
+            }
+          ]
+        },
+        {
+          'text': '模版管理',
+          'type': 'layout',
+          'to': '/mod',
+          'key': 'modlsit',
+          'list': [
+            {
+              'text': '模版管理',
+              'type': 'mod',
+              'to': '/template',
+              'key': 'template',
+            },
+            {
+              'text': '行业类别',
+              'type': 'trade',
+              'to': '/trade',
+              'key': 'trade',
+            },
+            {
+              'text': '模版类别',
+              'type': 'mod',
+              'to': '/template',
+              'key': 'templatetype',
+            }
+          ]
+        },
+        {
+          'text': '资源管理',
+          'type': 'deployment-unit',
+          'to': '/data',
+          'key': 'datalist',
+          'list': [
+            {
+              'text': '资源管理',
+              'type': 'mod',
+              'to': '/dada',
+              'key': 'data',
+            },
+            {
+              'text': '资源类别',
+              'type': 'data',
+              'to': '/data',
+              'key': 'datatype',
+            }
+          ]
+        },
+        {
+          'text': '其他',
+          'type': 'gold',
+          'to': '/other',
+          'key': 'otherlist',
+          'list': [
+            {
+              'text': '知识库',
+              'type': 'node',
+              'to': '/node',
+              'key': 'node',
+            }
+          ]
+        }
+      ]
     }
   }
   toggle = () => {
@@ -28,6 +173,24 @@ class LayoutBox extends Component {
     this.props.history.push('/login')
   };
   render() {
+    const menulist = this.state.menulist.map((item) =>{
+      debugger
+      if(item.list){
+        
+        return <SubMenu key={item.key} title={<span><Icon type={item.type} /><span>{item.text}</span></span>}>
+        {item.list.map((list) =>{
+          return <Menu.Item key={list.key}><Link to={list.to}>{list.text}</Link></Menu.Item>
+        })}
+      </SubMenu>
+      }else{
+        return <Menu.Item key={item.key}>
+        <Link to={item.to}>
+          <Icon type={item.type} />
+          <span>{item.text}</span>
+        </Link>
+      </Menu.Item>
+      }
+    })
     return (
       <Layout>
         <Sider
@@ -35,80 +198,9 @@ class LayoutBox extends Component {
           collapsible
           collapsed={this.state.collapsed}
         >
-          <div className="logo"><img src={Logo} alt="logo" /><Link to="/login">React Wheel</Link></div>
+          <div className="logo"><img src={Logo} alt="logo" /><Link to="/login">React Udev</Link></div>
           <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
-            <Menu.Item key="1">
-              <Link to="/home">
-                <Icon type="home" />
-                <span>首页</span>
-              </Link>
-            </Menu.Item>
-            <Menu.Item key="2">
-              <Link to="/user">
-                <Icon type="user" />
-                <span>用户管理</span>
-              </Link>
-            </Menu.Item>
-            <SubMenu key="sub1" title={<span><Icon type="mail" /><span>Navigation One</span></span>}>
-              <Menu.Item key="5">Option 5</Menu.Item>
-              <Menu.Item key="6">Option 6</Menu.Item>
-              <Menu.Item key="7">Option 7</Menu.Item>
-              <Menu.Item key="8">Option 8</Menu.Item>
-            </SubMenu>
-            <SubMenu key="sub2" title={<span><Icon type="mail" /><span>Navigation One</span></span>}>
-              <Menu.Item key="5">Option 5</Menu.Item>
-              <Menu.Item key="6">Option 6</Menu.Item>
-              <Menu.Item key="7">Option 7</Menu.Item>
-              <Menu.Item key="8">Option 8</Menu.Item>
-            </SubMenu>
-            <SubMenu key="sub3" title={<span><Icon type="mail" /><span>Navigation One</span></span>}>
-              <Menu.Item key="5">Option 5</Menu.Item>
-              <Menu.Item key="6">Option 6</Menu.Item>
-              <Menu.Item key="7">Option 7</Menu.Item>
-              <Menu.Item key="8">Option 8</Menu.Item>
-            </SubMenu>
-            <SubMenu key="sub4" title={<span><Icon type="mail" /><span>Navigation One</span></span>}>
-              <Menu.Item key="5">Option 5</Menu.Item>
-              <Menu.Item key="6">Option 6</Menu.Item>
-              <Menu.Item key="7">Option 7</Menu.Item>
-              <Menu.Item key="8">Option 8</Menu.Item>
-            </SubMenu>
-            <SubMenu key="sub5" title={<span><Icon type="mail" /><span>Navigation One</span></span>}>
-              <Menu.Item key="5">Option 5</Menu.Item>
-              <Menu.Item key="6">Option 6</Menu.Item>
-              <Menu.Item key="7">Option 7</Menu.Item>
-              <Menu.Item key="8">Option 8</Menu.Item>
-            </SubMenu>
-            <SubMenu key="sub6" title={<span><Icon type="mail" /><span>Navigation One</span></span>}>
-              <Menu.Item key="5">Option 5</Menu.Item>
-              <Menu.Item key="6">Option 6</Menu.Item>
-              <Menu.Item key="7">Option 7</Menu.Item>
-              <Menu.Item key="8">Option 8</Menu.Item>
-            </SubMenu>
-            <SubMenu key="sub7" title={<span><Icon type="mail" /><span>Navigation One</span></span>}>
-              <Menu.Item key="5">Option 5</Menu.Item>
-              <Menu.Item key="6">Option 6</Menu.Item>
-              <Menu.Item key="7">Option 7</Menu.Item>
-              <Menu.Item key="8">Option 8</Menu.Item>
-            </SubMenu>
-            <SubMenu key="sub8" title={<span><Icon type="mail" /><span>Navigation One</span></span>}>
-              <Menu.Item key="5">Option 5</Menu.Item>
-              <Menu.Item key="6">Option 6</Menu.Item>
-              <Menu.Item key="7">Option 7</Menu.Item>
-              <Menu.Item key="8">Option 8</Menu.Item>
-            </SubMenu>
-            <SubMenu key="sub9" title={<span><Icon type="mail" /><span>Navigation One</span></span>}>
-              <Menu.Item key="5">Option 5</Menu.Item>
-              <Menu.Item key="6">Option 6</Menu.Item>
-              <Menu.Item key="7">Option 7</Menu.Item>
-              <Menu.Item key="8">Option 8</Menu.Item>
-            </SubMenu>
-            <Menu.Item key="3">
-              <Link to="/about">
-                <Icon type="upload" />
-                <span>关于</span>
-              </Link>
-            </Menu.Item>
+            {menulist}
           </Menu>
         </Sider>
         <Layout>
@@ -129,14 +221,14 @@ class LayoutBox extends Component {
                 </Badge>
               </Menu.Item>
               <SubMenu title={<span className="avatar"><img src={Logo} alt="头像" /><i className="on bottom b-white" /></span>}>
+                <MenuItemGroup title="设置中心">
+                  <Menu.Item key="setting:3">个人设置</Menu.Item>
+                  <Menu.Item key="setting:4">系统设置</Menu.Item>
+                </MenuItemGroup>
                 <MenuItemGroup title="用户中心">
                   <Menu.Item key="setting:1">你好 - {'Caleb'}</Menu.Item>
                   <Menu.Item key="setting:2">个人信息</Menu.Item>
                   <Menu.Item key="logout"><span onClick={this.logout}>退出登录</span></Menu.Item>
-                </MenuItemGroup>
-                <MenuItemGroup title="设置中心">
-                  <Menu.Item key="setting:3">个人设置</Menu.Item>
-                  <Menu.Item key="setting:4">系统设置</Menu.Item>
                 </MenuItemGroup>
               </SubMenu>
             </Menu>

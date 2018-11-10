@@ -2,6 +2,9 @@
 .ant-layout{
   height: 100vh;
 }
+.ant-menu-submenu-popup{
+  background: #fff;
+}
 .ant-layout-content{
   margin: 24px 16px;
   padding: 24px; 
@@ -20,7 +23,7 @@
 .trigger:hover {
   color: #1890ff;
 }
-  
+
 .logo {
   height: 32px;
   margin: 16px;
