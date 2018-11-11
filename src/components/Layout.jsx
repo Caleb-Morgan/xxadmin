@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Layout, Menu, Icon, Badge } from 'antd';
+import { Layout, Menu, Icon, Badge, Card, Row, Col } from 'antd';
 import { Link } from 'react-router-dom';
 import '../styles/LayoutBox/LayoutBox.scss';
 import Logo from '../logo.svg';
@@ -12,6 +12,19 @@ class LayoutBox extends Component {
     this.state = {
       "activeIndex": 0,
       "collapsed": true,
+      "activekey":'1' ,
+      "panes": [
+        {
+          "title": 'Tab1',
+          "content":'Tab1 content',
+          "key": '1'
+        },
+        {
+          "title": 'Tab2',
+          "content":'Tab2 content',
+          "key": '2'
+        }
+      ],
       "menulist":[
         {
           'text': '首页',
@@ -174,7 +187,6 @@ class LayoutBox extends Component {
   };
   render() {
     const menulist = this.state.menulist.map((item) =>{
-      debugger
       if(item.list){
         
         return <SubMenu key={item.key} title={<span><Icon type={item.type} /><span>{item.text}</span></span>}>
@@ -234,7 +246,20 @@ class LayoutBox extends Component {
             </Menu>
           </Header>
           <Content>
-            {this.props.children}
+            <Row gutter={16}>
+              <Col span={6} className="card">
+              <Card bordered={false}>系统<p>100</p><div className="card-icon"></div></Card>
+              </Col>
+              <Col span={6} className="card">
+              <Card bordered={false}>规则<p>100</p><div className="card-icon"></div></Card>
+              </Col>
+              <Col span={6} className="card">
+              <Card bordered={false}>组件模板<p>100</p><div className="card-icon"></div></Card>
+              </Col>
+              <Col span={6} className="card">
+              <Card bordered={false}>资源<p>100</p><div className="card-icon"></div></Card>
+              </Col>
+            </Row>
           </Content>
         </Layout>
       </Layout>
